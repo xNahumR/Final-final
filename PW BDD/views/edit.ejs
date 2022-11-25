@@ -1,0 +1,69 @@
+<!-- PAGINA DONDE SE REGISTRAN LOS USUARIOS DE LA APP -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Editar</title>
+  </head>
+
+  <body>
+    <header>
+        <%- include('../views/partials/header'); %>
+    </header>
+
+    <% if(user){ %>
+    <div class="container mt-4">
+        <div class="card border-secondary">
+            <div class="card-header" style="text-align: center">Editar Usuario</div>
+            <div class="card-body">
+                <form action="/update" method="POST">
+                    <input id="id" name="id" value="<%= user.id%>" hidden>
+                    <div class="text-center mb-4">
+                        <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
+                    </div>
+                  
+                    <div class="form-label-group">
+                        <label for="user">User</label>
+                        <input type="text" name="user" id="user" value="<%= user.user%>" class="form-control"  placeholder="user" required autofocus>
+                    </div>
+                  <br>
+                    <div class="form-label-group">
+                        <label for="name">nombre completo</label>
+                        <input type="text"  name="name" id="name" value="<%= user.name%>" class="form-control" placeholder="nombre" required autofocus>
+                        
+                      </div>
+                      <br>
+                      <div class="form-label-group">
+                        <label for="pass">contraseña</label>
+                        <input type="password"  name="pass" id="pass" value="<%= user.pass%>" class="form-control" placeholder="password" required autofocus>
+            
+                      </div>
+                    <br>
+            
+                    <label for="rol">Rol</label>
+                    <select  name="rol" class="form-select" id="rol" aria-label="Default select example">
+                        <option selected>Open this rol select menu</option> 
+                        <option <%= user.rol=='admin' ? "selected" : '' %> value="admin">admin</option>
+                        <option <%= user.rol=='cajero' ? "selected" : '' %> value="cajero">cajero</option>
+                      </select>
+                      <br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
+                    <a href="/" class="btn btn-secondary">Cancelar</a>
+                    <p class="mt-5 mb-3 text-muted text-center">&copy; Nahum Romero 2022</p>
+                  </form>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <footer>
+        <%- include('../views/partials/footer'); %>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+
